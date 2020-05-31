@@ -1,0 +1,21 @@
+steps:
+  - name: 'gcr.io/cloud-builders/mvn'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+       mvn compile exec:java -Dexec.mainClass=com.garaujo.dataflow.demo.ChicagoTrips \
+        -Dexec.args="--runner=DataflowRunner \
+        --project=$PROJECT_ID --tempLocation=gs://staging-df/temp \
+        --stagingLocation=gs://staging-df/staging --gcpTempLocation=gs://staging-df/staging \
+        --templateLocation=gs://staging-df/templates/TAXICHICAGO --numWorkers=${_NUMWORKERS_} --maxNumWorkers=${_MAXNUMWORKERS_} \
+        --workerMachineType=${_WORKERMACHINETYPE_} --region=${_REGION_} --zone=${_ZONE_} --network=default \
+        --autoscalingAlgorithm=${_AUTOSCALING_} --usePublicIps=false --experiments=shuffle_mode=service \
+        --serviceAccount=dataflow-runner@dataflow-poc-278522.iam.gserviceaccount.com"
+substitutions:
+    _NUMWORKERS_: '4' # default value
+    _MAXNUMWORKERS_: '12' # default value
+    _WORKERMACHINETYPE_: n1-standard-4 # default value
+    _REGION_: us-central1 # default value
+    _ZONE_: us-central1-b # default value
+    _AUTOSCALING_: THROUGHPUT_BASED # default value
