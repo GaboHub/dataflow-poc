@@ -1,0 +1,22 @@
+{
+  "description": "Metadata input validations",
+  "name": "TAXICHICAGO",
+  "parameters": [
+    {
+      "regexes": [
+        "(?<=\\s\|^)\\d+(?=\\s\|$)"
+      ],
+      "name": "recordLimit",
+      "helpText": "record limit to get from bigquery",
+      "label": "How many ro ws do you need?"
+    },
+    {
+      "regexes": [
+        "^gs:\\/\\/[^\\n\\r]+$"
+      ],
+      "name": "output",
+      "helpText": "Path and filename prefix for writing output files. ex: gs://MyBucket/trips",
+      "label": "Output Cloud Storage file(s)"
+    }
+  ]
+}
