@@ -20,8 +20,8 @@ public class CountsJoinTransform {
         throw new IllegalArgumentException();
     }
 
-    public static PCollection<OutputYearMonth> getFlightUpdateFullJoin(PCollection<TaxiTripByYearMonthCompanyCount> tripsbyYearMontyCompany,
-                                                                       PCollection<AmountOfTripsByYearMonthCompanyPaymentType> countYearMonthCompanyPaymentType) {
+    public static PCollection<OutputYearMonth> joinPCollections(PCollection<TaxiTripByYearMonthCompanyCount> tripsbyYearMontyCompany,
+                                                                PCollection<AmountOfTripsByYearMonthCompanyPaymentType> countYearMonthCompanyPaymentType) {
 
         final TupleTag<TaxiTripByYearMonthCompanyCount> tripsByYearMonthCompanyTag = new TupleTag<TaxiTripByYearMonthCompanyCount>() {
             private static final long serialVersionUID = 2845427841964099965L;

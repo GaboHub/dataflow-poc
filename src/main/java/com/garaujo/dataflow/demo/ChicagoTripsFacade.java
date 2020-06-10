@@ -41,7 +41,7 @@ public class ChicagoTripsFacade {
                 .apply("Count payment by year month company and payment type", new MapYearMonthCompanyPaymentTypeTaxiTripAmountTransform());
 
 
-        PCollection<OutputYearMonth> outputYearCollection = CountsJoinTransform.getFlightUpdateFullJoin(tripsbyYearMontyCompany,
+        PCollection<OutputYearMonth> outputYearCollection = CountsJoinTransform.joinPCollections(tripsbyYearMontyCompany,
                                                                                     countYearMonthCompanyPaymentType);
 
         saveToStorage(outputYearCollection, chicagoTripsOptions);
